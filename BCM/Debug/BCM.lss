@@ -1,0 +1,1726 @@
+
+BCM.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000009ba  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000004  00800060  000009ba  00000a4e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000e  00800064  00800064  00000a52  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000a52  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000a84  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000200  00000000  00000000  00000ac0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001ac9  00000000  00000000  00000cc0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000b91  00000000  00000000  00002789  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000f96  00000000  00000000  0000331a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000004c4  00000000  00000000  000042b0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000009c0  00000000  00000000  00004774  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000ba0  00000000  00000000  00005134  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000188  00000000  00000000  00005cd4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 6b 04 	jmp	0x8d6	; 0x8d6 <__vector_13>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 94 04 	jmp	0x928	; 0x928 <__vector_15>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea eb       	ldi	r30, 0xBA	; 186
+  68:	f9 e0       	ldi	r31, 0x09	; 9
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a4 36       	cpi	r26, 0x64	; 100
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a4 e6       	ldi	r26, 0x64	; 100
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a2 37       	cpi	r26, 0x72	; 114
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 cf 01 	call	0x39e	; 0x39e <main>
+  8a:	0c 94 db 04 	jmp	0x9b6	; 0x9b6 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <BCM_TxHandler>:
+
+
+
+static void BCM_TxHandler(void)
+{
+	gu8Flag = HIGH;
+  92:	81 e0       	ldi	r24, 0x01	; 1
+  94:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <gu8Flag>
+  98:	08 95       	ret
+
+0000009a <BCM_ReceiveByte>:
+		TWI_stop();
+	}
+}
+
+static void BCM_ReceiveByte(uint16_t* pu16Data)
+{
+  9a:	cf 93       	push	r28
+  9c:	df 93       	push	r29
+  9e:	ec 01       	movw	r28, r24
+	if(gstrBCMPacket.strBCMTaskCfg->enuBCMChannel == BCM_UART_CHANNEL)
+  a0:	e0 91 68 00 	lds	r30, 0x0068	; 0x800068 <gstrBCMPacket>
+  a4:	f0 91 69 00 	lds	r31, 0x0069	; 0x800069 <gstrBCMPacket+0x1>
+  a8:	87 85       	ldd	r24, Z+15	; 0x0f
+  aa:	81 11       	cpse	r24, r1
+  ac:	04 c0       	rjmp	.+8      	; 0xb6 <BCM_ReceiveByte+0x1c>
+	{
+		UART_RecieveDataNoBLOCK(pu16Data);
+  ae:	ce 01       	movw	r24, r28
+  b0:	0e 94 2f 04 	call	0x85e	; 0x85e <UART_RecieveDataNoBLOCK>
+  b4:	10 c0       	rjmp	.+32     	; 0xd6 <BCM_ReceiveByte+0x3c>
+	}
+	else if(gstrBCMPacket.strBCMTaskCfg->enuBCMChannel == BCM_SPI_CHANNEL)
+  b6:	81 30       	cpi	r24, 0x01	; 1
+  b8:	21 f4       	brne	.+8      	; 0xc2 <BCM_ReceiveByte+0x28>
+	{
+		SPI_receiveData((uint8_t*)pu16Data);
+  ba:	ce 01       	movw	r24, r28
+  bc:	0e 94 11 04 	call	0x822	; 0x822 <SPI_receiveData>
+  c0:	0a c0       	rjmp	.+20     	; 0xd6 <BCM_ReceiveByte+0x3c>
+	}
+	else
+	{
+		TWI_start();
+  c2:	0e 94 ea 03 	call	0x7d4	; 0x7d4 <TWI_start>
+		TWI_write(BCM_TWI_SLAVE_ADDRESS | (1 << 0));
+  c6:	81 ea       	ldi	r24, 0xA1	; 161
+  c8:	0e 94 f3 03 	call	0x7e6	; 0x7e6 <TWI_write>
+		TWI_readWithACK((uint8_t*)pu16Data);
+  cc:	ce 01       	movw	r24, r28
+  ce:	0e 94 fa 03 	call	0x7f4	; 0x7f4 <TWI_readWithACK>
+		TWI_stop();
+  d2:	0e 94 f0 03 	call	0x7e0	; 0x7e0 <TWI_stop>
+	}	
+  d6:	df 91       	pop	r29
+  d8:	cf 91       	pop	r28
+  da:	08 95       	ret
+
+000000dc <BCM_RxHandler>:
+	gu8Flag = HIGH;
+}
+
+static void BCM_RxHandler(void)
+{
+	if(gstrBCMPacket.enuBCMStateMachine == BCM_STATE_IDLE)
+  dc:	80 91 6c 00 	lds	r24, 0x006C	; 0x80006c <gstrBCMPacket+0x4>
+  e0:	81 11       	cpse	r24, r1
+  e2:	03 c0       	rjmp	.+6      	; 0xea <BCM_RxHandler+0xe>
+	{
+		gstrBCMPacket.enuBCMStateMachine = BCM_STATE_RXCMD;		
+  e4:	85 e0       	ldi	r24, 0x05	; 5
+  e6:	80 93 6c 00 	sts	0x006C, r24	; 0x80006c <gstrBCMPacket+0x4>
+	}
+	else
+	{
+	}
+	BCM_ReceiveByte(&gu16Buffer);
+  ea:	86 e6       	ldi	r24, 0x66	; 102
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	0e 94 4d 00 	call	0x9a	; 0x9a <BCM_ReceiveByte>
+	gu8Flag=HIGH;
+  f2:	81 e0       	ldi	r24, 0x01	; 1
+  f4:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <gu8Flag>
+  f8:	08 95       	ret
+
+000000fa <BCM_SendByte>:
+}
+
+static void BCM_SendByte(uint16_t u16Data)
+{
+  fa:	cf 93       	push	r28
+  fc:	c8 2f       	mov	r28, r24
+	if(gstrBCMPacket.strBCMTaskCfg->enuBCMChannel == BCM_UART_CHANNEL)
+  fe:	e0 91 68 00 	lds	r30, 0x0068	; 0x800068 <gstrBCMPacket>
+ 102:	f0 91 69 00 	lds	r31, 0x0069	; 0x800069 <gstrBCMPacket+0x1>
+ 106:	87 85       	ldd	r24, Z+15	; 0x0f
+ 108:	81 11       	cpse	r24, r1
+ 10a:	04 c0       	rjmp	.+8      	; 0x114 <BCM_SendByte+0x1a>
+	{
+		UART_SendDataNoBLOCK(u16Data);
+ 10c:	8c 2f       	mov	r24, r28
+ 10e:	0e 94 40 04 	call	0x880	; 0x880 <UART_SendDataNoBLOCK>
+ 112:	10 c0       	rjmp	.+32     	; 0x134 <BCM_SendByte+0x3a>
+	}
+	else if(gstrBCMPacket.strBCMTaskCfg->enuBCMChannel == BCM_SPI_CHANNEL)
+ 114:	81 30       	cpi	r24, 0x01	; 1
+ 116:	21 f4       	brne	.+8      	; 0x120 <BCM_SendByte+0x26>
+	{
+		SPI_sendData((uint8_t)u16Data);
+ 118:	8c 2f       	mov	r24, r28
+ 11a:	0e 94 0d 04 	call	0x81a	; 0x81a <SPI_sendData>
+ 11e:	0a c0       	rjmp	.+20     	; 0x134 <BCM_SendByte+0x3a>
+	}
+	else
+	{
+		TWI_start();
+ 120:	0e 94 ea 03 	call	0x7d4	; 0x7d4 <TWI_start>
+		TWI_write(BCM_TWI_SLAVE_ADDRESS);
+ 124:	80 ea       	ldi	r24, 0xA0	; 160
+ 126:	0e 94 f3 03 	call	0x7e6	; 0x7e6 <TWI_write>
+		TWI_write((uint8_t)u16Data);
+ 12a:	8c 2f       	mov	r24, r28
+ 12c:	0e 94 f3 03 	call	0x7e6	; 0x7e6 <TWI_write>
+		TWI_stop();
+ 130:	0e 94 f0 03 	call	0x7e0	; 0x7e0 <TWI_stop>
+	}
+}
+ 134:	cf 91       	pop	r28
+ 136:	08 95       	ret
+
+00000138 <BCM_Init>:
+static void BCM_SendByte(uint16_t u16Data);
+static void BCM_ReceiveByte(uint16_t* pu16Data);
+
+
+enuErrorStatus_t BCM_Init(strBCMCfg_t *strBCMCfg)
+{
+ 138:	cf 93       	push	r28
+ 13a:	df 93       	push	r29
+	enuErrorStatus_t enuErrorStatus;
+
+	if(strBCMCfg==NULLPTR)
+ 13c:	00 97       	sbiw	r24, 0x00	; 0
+ 13e:	09 f4       	brne	.+2      	; 0x142 <BCM_Init+0xa>
+ 140:	40 c0       	rjmp	.+128    	; 0x1c2 <BCM_Init+0x8a>
+ 142:	ec 01       	movw	r28, r24
+	{
+		enuErrorStatus = E_ERROR;
+	}
+	else
+	{
+		switch(strBCMCfg->enuBCMChannel)
+ 144:	88 81       	ld	r24, Y
+ 146:	81 30       	cpi	r24, 0x01	; 1
+ 148:	41 f1       	breq	.+80     	; 0x19a <BCM_Init+0x62>
+ 14a:	18 f0       	brcs	.+6      	; 0x152 <BCM_Init+0x1a>
+ 14c:	82 30       	cpi	r24, 0x02	; 2
+ 14e:	a9 f1       	breq	.+106    	; 0x1ba <BCM_Init+0x82>
+ 150:	3a c0       	rjmp	.+116    	; 0x1c6 <BCM_Init+0x8e>
+		{
+			case BCM_UART_CHANNEL:
+				UART_Init();
+ 152:	0e 94 17 04 	call	0x82e	; 0x82e <UART_Init>
+				if(strBCMCfg->enuBCMMode == BCM_TX)
+ 156:	89 81       	ldd	r24, Y+1	; 0x01
+ 158:	81 11       	cpse	r24, r1
+ 15a:	07 c0       	rjmp	.+14     	; 0x16a <BCM_Init+0x32>
+				{
+					UART_TX_Enable_Interrupt();
+ 15c:	0e 94 4d 04 	call	0x89a	; 0x89a <UART_TX_Enable_Interrupt>
+					UART_TX_SetCallBack(BCM_TxHandler);
+ 160:	89 e4       	ldi	r24, 0x49	; 73
+ 162:	90 e0       	ldi	r25, 0x00	; 0
+ 164:	0e 94 52 04 	call	0x8a4	; 0x8a4 <UART_TX_SetCallBack>
+ 168:	15 c0       	rjmp	.+42     	; 0x194 <BCM_Init+0x5c>
+				}
+				else if(strBCMCfg->enuBCMMode == BCM_RX)
+ 16a:	81 30       	cpi	r24, 0x01	; 1
+ 16c:	39 f4       	brne	.+14     	; 0x17c <BCM_Init+0x44>
+				{
+					UART_RX_Enable_Interrupt();
+ 16e:	0e 94 5c 04 	call	0x8b8	; 0x8b8 <UART_RX_Enable_Interrupt>
+					UART_RX_SetCallBack(BCM_RxHandler);					
+ 172:	8e e6       	ldi	r24, 0x6E	; 110
+ 174:	90 e0       	ldi	r25, 0x00	; 0
+ 176:	0e 94 61 04 	call	0x8c2	; 0x8c2 <UART_RX_SetCallBack>
+ 17a:	0c c0       	rjmp	.+24     	; 0x194 <BCM_Init+0x5c>
+				}
+				else
+				{
+					UART_TX_Enable_Interrupt();
+ 17c:	0e 94 4d 04 	call	0x89a	; 0x89a <UART_TX_Enable_Interrupt>
+					UART_TX_SetCallBack(BCM_TxHandler);					
+ 180:	89 e4       	ldi	r24, 0x49	; 73
+ 182:	90 e0       	ldi	r25, 0x00	; 0
+ 184:	0e 94 52 04 	call	0x8a4	; 0x8a4 <UART_TX_SetCallBack>
+					UART_RX_Enable_Interrupt();
+ 188:	0e 94 5c 04 	call	0x8b8	; 0x8b8 <UART_RX_Enable_Interrupt>
+					UART_RX_SetCallBack(BCM_RxHandler);
+ 18c:	8e e6       	ldi	r24, 0x6E	; 110
+ 18e:	90 e0       	ldi	r25, 0x00	; 0
+ 190:	0e 94 61 04 	call	0x8c2	; 0x8c2 <UART_RX_SetCallBack>
+				}
+				sei();
+ 194:	78 94       	sei
+				enuErrorStatus = E_OK;
+ 196:	81 e0       	ldi	r24, 0x01	; 1
+				break;
+ 198:	19 c0       	rjmp	.+50     	; 0x1cc <BCM_Init+0x94>
+			case BCM_SPI_CHANNEL:
+				switch(strBCMCfg->enuBCMMode)
+ 19a:	89 81       	ldd	r24, Y+1	; 0x01
+ 19c:	81 30       	cpi	r24, 0x01	; 1
+ 19e:	49 f0       	breq	.+18     	; 0x1b2 <BCM_Init+0x7a>
+ 1a0:	20 f0       	brcs	.+8      	; 0x1aa <BCM_Init+0x72>
+ 1a2:	82 30       	cpi	r24, 0x02	; 2
+ 1a4:	91 f4       	brne	.+36     	; 0x1ca <BCM_Init+0x92>
+					case BCM_RX:
+						SPI_initSlave();
+						enuErrorStatus = E_OK;
+						break;
+					case BCM_TX_RX:
+						enuErrorStatus = E_OK;
+ 1a6:	81 e0       	ldi	r24, 0x01	; 1
+ 1a8:	11 c0       	rjmp	.+34     	; 0x1cc <BCM_Init+0x94>
+				break;
+			case BCM_SPI_CHANNEL:
+				switch(strBCMCfg->enuBCMMode)
+				{
+					case BCM_TX:
+						SPI_initMaster();
+ 1aa:	0e 94 03 04 	call	0x806	; 0x806 <SPI_initMaster>
+						enuErrorStatus = E_OK;
+ 1ae:	81 e0       	ldi	r24, 0x01	; 1
+						break;
+ 1b0:	0d c0       	rjmp	.+26     	; 0x1cc <BCM_Init+0x94>
+					case BCM_RX:
+						SPI_initSlave();
+ 1b2:	0e 94 08 04 	call	0x810	; 0x810 <SPI_initSlave>
+						enuErrorStatus = E_OK;
+ 1b6:	81 e0       	ldi	r24, 0x01	; 1
+						break;
+ 1b8:	09 c0       	rjmp	.+18     	; 0x1cc <BCM_Init+0x94>
+					default:
+						enuErrorStatus = E_ERROR;
+				}
+				break;
+			case BCM_I2C_CHANNEL:
+				TWI_init();
+ 1ba:	0e 94 e3 03 	call	0x7c6	; 0x7c6 <TWI_init>
+				enuErrorStatus = E_OK;
+ 1be:	81 e0       	ldi	r24, 0x01	; 1
+				break;
+ 1c0:	05 c0       	rjmp	.+10     	; 0x1cc <BCM_Init+0x94>
+{
+	enuErrorStatus_t enuErrorStatus;
+
+	if(strBCMCfg==NULLPTR)
+	{
+		enuErrorStatus = E_ERROR;
+ 1c2:	80 e0       	ldi	r24, 0x00	; 0
+ 1c4:	03 c0       	rjmp	.+6      	; 0x1cc <BCM_Init+0x94>
+			case BCM_I2C_CHANNEL:
+				TWI_init();
+				enuErrorStatus = E_OK;
+				break;
+			default:
+				enuErrorStatus = E_ERROR;
+ 1c6:	80 e0       	ldi	r24, 0x00	; 0
+ 1c8:	01 c0       	rjmp	.+2      	; 0x1cc <BCM_Init+0x94>
+						break;
+					case BCM_TX_RX:
+						enuErrorStatus = E_OK;
+						break;
+					default:
+						enuErrorStatus = E_ERROR;
+ 1ca:	80 e0       	ldi	r24, 0x00	; 0
+				break;
+			default:
+				enuErrorStatus = E_ERROR;
+		}
+	}
+	gu8BCMInitState = HIGH;
+ 1cc:	91 e0       	ldi	r25, 0x01	; 1
+ 1ce:	90 93 64 00 	sts	0x0064, r25	; 0x800064 <__data_end>
+
+	return enuErrorStatus;
+}
+ 1d2:	df 91       	pop	r29
+ 1d4:	cf 91       	pop	r28
+ 1d6:	08 95       	ret
+
+000001d8 <BCM_Setup>:
+
+enuErrorStatus_t BCM_Setup(strBCMTaskCfg_t *pstrBCMTaskCfg)
+{
+	enuErrorStatus_t enuErrorStatus;
+
+	if((pstrBCMTaskCfg==NULLPTR) || (gu8BCMInitState==LOW))
+ 1d8:	00 97       	sbiw	r24, 0x00	; 0
+ 1da:	b9 f0       	breq	.+46     	; 0x20a <BCM_Setup+0x32>
+ 1dc:	20 91 64 00 	lds	r18, 0x0064	; 0x800064 <__data_end>
+ 1e0:	22 23       	and	r18, r18
+ 1e2:	a9 f0       	breq	.+42     	; 0x20e <BCM_Setup+0x36>
+	{
+		enuErrorStatus = E_ERROR;
+	}
+	else
+	{
+      gstrBCMPacket.strBCMTaskCfg=pstrBCMTaskCfg;
+ 1e4:	e8 e6       	ldi	r30, 0x68	; 104
+ 1e6:	f0 e0       	ldi	r31, 0x00	; 0
+ 1e8:	91 83       	std	Z+1, r25	; 0x01
+ 1ea:	80 83       	st	Z, r24
+ 		gstrBCMPacket.enuBCMStateMachine = BCM_STATE_IDLE;
+ 1ec:	14 82       	std	Z+4, r1	; 0x04
+		gstrBCMPacket.u16ByteCounter = 0;
+ 1ee:	13 82       	std	Z+3, r1	; 0x03
+ 1f0:	12 82       	std	Z+2, r1	; 0x02
+		if(gstrBCMPacket.strBCMTaskCfg->enuBCMMode == BCM_TX)
+ 1f2:	fc 01       	movw	r30, r24
+ 1f4:	80 89       	ldd	r24, Z+16	; 0x10
+ 1f6:	81 11       	cpse	r24, r1
+ 1f8:	04 c0       	rjmp	.+8      	; 0x202 <BCM_Setup+0x2a>
+		{
+			gu8Flag = HIGH;
+ 1fa:	81 e0       	ldi	r24, 0x01	; 1
+ 1fc:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <gu8Flag>
+ 200:	08 95       	ret
+		}
+		else 
+		{
+			gu8Flag = LOW;
+ 202:	10 92 65 00 	sts	0x0065, r1	; 0x800065 <gu8Flag>
+		}
+		enuErrorStatus = E_OK;
+ 206:	81 e0       	ldi	r24, 0x01	; 1
+ 208:	08 95       	ret
+{
+	enuErrorStatus_t enuErrorStatus;
+
+	if((pstrBCMTaskCfg==NULLPTR) || (gu8BCMInitState==LOW))
+	{
+		enuErrorStatus = E_ERROR;
+ 20a:	80 e0       	ldi	r24, 0x00	; 0
+ 20c:	08 95       	ret
+ 20e:	80 e0       	ldi	r24, 0x00	; 0
+			gu8Flag = LOW;
+		}
+		enuErrorStatus = E_OK;
+	}
+	return enuErrorStatus;
+}
+ 210:	08 95       	ret
+
+00000212 <BCM_TxDispatcher>:
+
+enuErrorStatus_t BCM_TxDispatcher(void)
+{
+ 212:	8f 92       	push	r8
+ 214:	9f 92       	push	r9
+ 216:	af 92       	push	r10
+ 218:	bf 92       	push	r11
+ 21a:	cf 92       	push	r12
+ 21c:	df 92       	push	r13
+ 21e:	ef 92       	push	r14
+ 220:	ff 92       	push	r15
+ 222:	0f 93       	push	r16
+ 224:	cf 93       	push	r28
+ 226:	df 93       	push	r29
+	enuErrorStatus_t enuErrorStatus= E_ERROR;
+	static uint8_t u8ChecksumShiftValue = 56;
+
+	if((gu8BCMInitState == LOW) && (gstrBCMPacket.strBCMTaskCfg->enuBCMMode == BCM_RX))
+ 228:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <__data_end>
+ 22c:	81 11       	cpse	r24, r1
+ 22e:	08 c0       	rjmp	.+16     	; 0x240 <BCM_TxDispatcher+0x2e>
+ 230:	e0 91 68 00 	lds	r30, 0x0068	; 0x800068 <gstrBCMPacket>
+ 234:	f0 91 69 00 	lds	r31, 0x0069	; 0x800069 <gstrBCMPacket+0x1>
+ 238:	80 89       	ldd	r24, Z+16	; 0x10
+ 23a:	81 30       	cpi	r24, 0x01	; 1
+ 23c:	09 f4       	brne	.+2      	; 0x240 <BCM_TxDispatcher+0x2e>
+ 23e:	9a c0       	rjmp	.+308    	; 0x374 <BCM_TxDispatcher+0x162>
+	{
+		enuErrorStatus = E_ERROR;
+	}
+	else
+	{
+		if(gu8Flag == HIGH)
+ 240:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <gu8Flag>
+ 244:	81 30       	cpi	r24, 0x01	; 1
+ 246:	09 f0       	breq	.+2      	; 0x24a <BCM_TxDispatcher+0x38>
+ 248:	97 c0       	rjmp	.+302    	; 0x378 <BCM_TxDispatcher+0x166>
+		{
+			gu8Flag = LOW;
+ 24a:	10 92 65 00 	sts	0x0065, r1	; 0x800065 <gu8Flag>
+			switch(gstrBCMPacket.enuBCMStateMachine)
+ 24e:	80 91 6c 00 	lds	r24, 0x006C	; 0x80006c <gstrBCMPacket+0x4>
+ 252:	82 30       	cpi	r24, 0x02	; 2
+ 254:	31 f1       	breq	.+76     	; 0x2a2 <BCM_TxDispatcher+0x90>
+ 256:	28 f4       	brcc	.+10     	; 0x262 <BCM_TxDispatcher+0x50>
+ 258:	88 23       	and	r24, r24
+ 25a:	61 f0       	breq	.+24     	; 0x274 <BCM_TxDispatcher+0x62>
+ 25c:	81 30       	cpi	r24, 0x01	; 1
+ 25e:	a9 f0       	breq	.+42     	; 0x28a <BCM_TxDispatcher+0x78>
+ 260:	8d c0       	rjmp	.+282    	; 0x37c <BCM_TxDispatcher+0x16a>
+ 262:	84 30       	cpi	r24, 0x04	; 4
+ 264:	09 f4       	brne	.+2      	; 0x268 <BCM_TxDispatcher+0x56>
+ 266:	51 c0       	rjmp	.+162    	; 0x30a <BCM_TxDispatcher+0xf8>
+ 268:	48 f1       	brcs	.+82     	; 0x2bc <BCM_TxDispatcher+0xaa>
+ 26a:	89 30       	cpi	r24, 0x09	; 9
+ 26c:	09 f0       	breq	.+2      	; 0x270 <BCM_TxDispatcher+0x5e>
+ 26e:	86 c0       	rjmp	.+268    	; 0x37c <BCM_TxDispatcher+0x16a>
+					gstrBCMPacket.enuBCMStateMachine = BCM_STATE_FINISHED;
+				}
+				enuErrorStatus = E_OK;
+				break;
+				case BCM_STATE_FINISHED:
+				enuErrorStatus = E_OK;
+ 270:	81 e0       	ldi	r24, 0x01	; 1
+ 272:	85 c0       	rjmp	.+266    	; 0x37e <BCM_TxDispatcher+0x16c>
+		{
+			gu8Flag = LOW;
+			switch(gstrBCMPacket.enuBCMStateMachine)
+			{
+				case BCM_STATE_IDLE:
+				BCM_SendByte(gstrBCMPacket.strBCMTaskCfg->enuBCMCommand);
+ 274:	c8 e6       	ldi	r28, 0x68	; 104
+ 276:	d0 e0       	ldi	r29, 0x00	; 0
+ 278:	e8 81       	ld	r30, Y
+ 27a:	f9 81       	ldd	r31, Y+1	; 0x01
+ 27c:	80 81       	ld	r24, Z
+ 27e:	90 e0       	ldi	r25, 0x00	; 0
+ 280:	0e 94 7d 00 	call	0xfa	; 0xfa <BCM_SendByte>
+				gstrBCMPacket.enuBCMStateMachine = BCM_STATE_TXCMD;
+ 284:	81 e0       	ldi	r24, 0x01	; 1
+ 286:	8c 83       	std	Y+4, r24	; 0x04
+				enuErrorStatus = E_OK;
+				break;
+ 288:	7a c0       	rjmp	.+244    	; 0x37e <BCM_TxDispatcher+0x16c>
+				case BCM_STATE_TXCMD:
+				BCM_SendByte((gstrBCMPacket.strBCMTaskCfg->u16Size >> 8));
+ 28a:	c8 e6       	ldi	r28, 0x68	; 104
+ 28c:	d0 e0       	ldi	r29, 0x00	; 0
+ 28e:	e8 81       	ld	r30, Y
+ 290:	f9 81       	ldd	r31, Y+1	; 0x01
+ 292:	82 81       	ldd	r24, Z+2	; 0x02
+ 294:	90 e0       	ldi	r25, 0x00	; 0
+ 296:	0e 94 7d 00 	call	0xfa	; 0xfa <BCM_SendByte>
+				gstrBCMPacket.enuBCMStateMachine = BCM_STATE_TXSIZE;
+ 29a:	82 e0       	ldi	r24, 0x02	; 2
+ 29c:	8c 83       	std	Y+4, r24	; 0x04
+				enuErrorStatus = E_OK;
+ 29e:	81 e0       	ldi	r24, 0x01	; 1
+				break;
+ 2a0:	6e c0       	rjmp	.+220    	; 0x37e <BCM_TxDispatcher+0x16c>
+				case BCM_STATE_TXSIZE:
+				BCM_SendByte(((gstrBCMPacket.strBCMTaskCfg->u16Size) & 0xFF));
+ 2a2:	c8 e6       	ldi	r28, 0x68	; 104
+ 2a4:	d0 e0       	ldi	r29, 0x00	; 0
+ 2a6:	e8 81       	ld	r30, Y
+ 2a8:	f9 81       	ldd	r31, Y+1	; 0x01
+ 2aa:	81 81       	ldd	r24, Z+1	; 0x01
+ 2ac:	92 81       	ldd	r25, Z+2	; 0x02
+ 2ae:	99 27       	eor	r25, r25
+ 2b0:	0e 94 7d 00 	call	0xfa	; 0xfa <BCM_SendByte>
+				gstrBCMPacket.enuBCMStateMachine = BCM_STATE_TXDATA;
+ 2b4:	83 e0       	ldi	r24, 0x03	; 3
+ 2b6:	8c 83       	std	Y+4, r24	; 0x04
+				enuErrorStatus = E_OK;
+ 2b8:	81 e0       	ldi	r24, 0x01	; 1
+				break;
+ 2ba:	61 c0       	rjmp	.+194    	; 0x37e <BCM_TxDispatcher+0x16c>
+				case BCM_STATE_TXDATA:
+				BCM_SendByte(gstrBCMPacket.strBCMTaskCfg->pu8DataBuffer[gstrBCMPacket.u16ByteCounter]);
+ 2bc:	c8 e6       	ldi	r28, 0x68	; 104
+ 2be:	d0 e0       	ldi	r29, 0x00	; 0
+ 2c0:	e8 81       	ld	r30, Y
+ 2c2:	f9 81       	ldd	r31, Y+1	; 0x01
+ 2c4:	03 80       	ldd	r0, Z+3	; 0x03
+ 2c6:	f4 81       	ldd	r31, Z+4	; 0x04
+ 2c8:	e0 2d       	mov	r30, r0
+ 2ca:	8a 81       	ldd	r24, Y+2	; 0x02
+ 2cc:	9b 81       	ldd	r25, Y+3	; 0x03
+ 2ce:	e8 0f       	add	r30, r24
+ 2d0:	f9 1f       	adc	r31, r25
+ 2d2:	80 81       	ld	r24, Z
+ 2d4:	90 e0       	ldi	r25, 0x00	; 0
+ 2d6:	0e 94 7d 00 	call	0xfa	; 0xfa <BCM_SendByte>
+				if (gstrBCMPacket.u16ByteCounter < gstrBCMPacket.strBCMTaskCfg->u16Size)
+ 2da:	8a 81       	ldd	r24, Y+2	; 0x02
+ 2dc:	9b 81       	ldd	r25, Y+3	; 0x03
+ 2de:	e8 81       	ld	r30, Y
+ 2e0:	f9 81       	ldd	r31, Y+1	; 0x01
+ 2e2:	21 81       	ldd	r18, Z+1	; 0x01
+ 2e4:	32 81       	ldd	r19, Z+2	; 0x02
+ 2e6:	82 17       	cp	r24, r18
+ 2e8:	93 07       	cpc	r25, r19
+ 2ea:	38 f4       	brcc	.+14     	; 0x2fa <BCM_TxDispatcher+0xe8>
+				{
+					gstrBCMPacket.u16ByteCounter++;
+ 2ec:	01 96       	adiw	r24, 0x01	; 1
+ 2ee:	90 93 6b 00 	sts	0x006B, r25	; 0x80006b <gstrBCMPacket+0x3>
+ 2f2:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <gstrBCMPacket+0x2>
+				else
+				{
+					gstrBCMPacket.u16ByteCounter = 0;
+					gstrBCMPacket.enuBCMStateMachine= BCM_STATE_TXCS;
+				}
+				enuErrorStatus = E_OK;
+ 2f6:	81 e0       	ldi	r24, 0x01	; 1
+ 2f8:	42 c0       	rjmp	.+132    	; 0x37e <BCM_TxDispatcher+0x16c>
+				{
+					gstrBCMPacket.u16ByteCounter++;
+				}
+				else
+				{
+					gstrBCMPacket.u16ByteCounter = 0;
+ 2fa:	e8 e6       	ldi	r30, 0x68	; 104
+ 2fc:	f0 e0       	ldi	r31, 0x00	; 0
+ 2fe:	13 82       	std	Z+3, r1	; 0x03
+ 300:	12 82       	std	Z+2, r1	; 0x02
+					gstrBCMPacket.enuBCMStateMachine= BCM_STATE_TXCS;
+ 302:	84 e0       	ldi	r24, 0x04	; 4
+ 304:	84 83       	std	Z+4, r24	; 0x04
+				}
+				enuErrorStatus = E_OK;
+ 306:	81 e0       	ldi	r24, 0x01	; 1
+ 308:	3a c0       	rjmp	.+116    	; 0x37e <BCM_TxDispatcher+0x16c>
+				break;
+				case BCM_STATE_TXCS:
+				BCM_SendByte(((gstrBCMPacket.strBCMTaskCfg->u64CheckSum) >> u8ChecksumShiftValue) & 0xFF);
+ 30a:	c8 e6       	ldi	r28, 0x68	; 104
+ 30c:	d0 e0       	ldi	r29, 0x00	; 0
+ 30e:	e8 81       	ld	r30, Y
+ 310:	f9 81       	ldd	r31, Y+1	; 0x01
+ 312:	25 81       	ldd	r18, Z+5	; 0x05
+ 314:	36 81       	ldd	r19, Z+6	; 0x06
+ 316:	47 81       	ldd	r20, Z+7	; 0x07
+ 318:	50 85       	ldd	r21, Z+8	; 0x08
+ 31a:	61 85       	ldd	r22, Z+9	; 0x09
+ 31c:	72 85       	ldd	r23, Z+10	; 0x0a
+ 31e:	00 91 60 00 	lds	r16, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 322:	83 85       	ldd	r24, Z+11	; 0x0b
+ 324:	94 85       	ldd	r25, Z+12	; 0x0c
+ 326:	0e 94 bf 04 	call	0x97e	; 0x97e <__lshrdi3>
+ 32a:	82 2e       	mov	r8, r18
+ 32c:	93 2e       	mov	r9, r19
+ 32e:	c4 01       	movw	r24, r8
+ 330:	99 27       	eor	r25, r25
+ 332:	0e 94 7d 00 	call	0xfa	; 0xfa <BCM_SendByte>
+				u8ChecksumShiftValue -= 8;
+ 336:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 33a:	88 50       	subi	r24, 0x08	; 8
+ 33c:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+				if (gstrBCMPacket.u16ByteCounter < 7)
+ 340:	8a 81       	ldd	r24, Y+2	; 0x02
+ 342:	9b 81       	ldd	r25, Y+3	; 0x03
+ 344:	87 30       	cpi	r24, 0x07	; 7
+ 346:	91 05       	cpc	r25, r1
+ 348:	38 f4       	brcc	.+14     	; 0x358 <BCM_TxDispatcher+0x146>
+				{
+					gstrBCMPacket.u16ByteCounter++;
+ 34a:	01 96       	adiw	r24, 0x01	; 1
+ 34c:	90 93 6b 00 	sts	0x006B, r25	; 0x80006b <gstrBCMPacket+0x3>
+ 350:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <gstrBCMPacket+0x2>
+				{
+					gstrBCMPacket.u16ByteCounter = 0;
+					gstrBCMPacket.strBCMTaskCfg->pfTaskCompleteNotify();
+					gstrBCMPacket.enuBCMStateMachine = BCM_STATE_FINISHED;
+				}
+				enuErrorStatus = E_OK;
+ 354:	81 e0       	ldi	r24, 0x01	; 1
+ 356:	13 c0       	rjmp	.+38     	; 0x37e <BCM_TxDispatcher+0x16c>
+				{
+					gstrBCMPacket.u16ByteCounter++;
+				}
+				else
+				{
+					gstrBCMPacket.u16ByteCounter = 0;
+ 358:	c8 e6       	ldi	r28, 0x68	; 104
+ 35a:	d0 e0       	ldi	r29, 0x00	; 0
+ 35c:	1b 82       	std	Y+3, r1	; 0x03
+ 35e:	1a 82       	std	Y+2, r1	; 0x02
+					gstrBCMPacket.strBCMTaskCfg->pfTaskCompleteNotify();
+ 360:	e8 81       	ld	r30, Y
+ 362:	f9 81       	ldd	r31, Y+1	; 0x01
+ 364:	05 84       	ldd	r0, Z+13	; 0x0d
+ 366:	f6 85       	ldd	r31, Z+14	; 0x0e
+ 368:	e0 2d       	mov	r30, r0
+ 36a:	09 95       	icall
+					gstrBCMPacket.enuBCMStateMachine = BCM_STATE_FINISHED;
+ 36c:	89 e0       	ldi	r24, 0x09	; 9
+ 36e:	8c 83       	std	Y+4, r24	; 0x04
+				}
+				enuErrorStatus = E_OK;
+ 370:	81 e0       	ldi	r24, 0x01	; 1
+ 372:	05 c0       	rjmp	.+10     	; 0x37e <BCM_TxDispatcher+0x16c>
+	enuErrorStatus_t enuErrorStatus= E_ERROR;
+	static uint8_t u8ChecksumShiftValue = 56;
+
+	if((gu8BCMInitState == LOW) && (gstrBCMPacket.strBCMTaskCfg->enuBCMMode == BCM_RX))
+	{
+		enuErrorStatus = E_ERROR;
+ 374:	80 e0       	ldi	r24, 0x00	; 0
+ 376:	03 c0       	rjmp	.+6      	; 0x37e <BCM_TxDispatcher+0x16c>
+	return enuErrorStatus;
+}
+
+enuErrorStatus_t BCM_TxDispatcher(void)
+{
+	enuErrorStatus_t enuErrorStatus= E_ERROR;
+ 378:	80 e0       	ldi	r24, 0x00	; 0
+ 37a:	01 c0       	rjmp	.+2      	; 0x37e <BCM_TxDispatcher+0x16c>
+				break;
+				case BCM_STATE_FINISHED:
+				enuErrorStatus = E_OK;
+				break;
+				default:
+				enuErrorStatus = E_ERROR;
+ 37c:	80 e0       	ldi	r24, 0x00	; 0
+		else
+		{
+		}
+	}
+	return enuErrorStatus;
+}
+ 37e:	df 91       	pop	r29
+ 380:	cf 91       	pop	r28
+ 382:	0f 91       	pop	r16
+ 384:	ff 90       	pop	r15
+ 386:	ef 90       	pop	r14
+ 388:	df 90       	pop	r13
+ 38a:	cf 90       	pop	r12
+ 38c:	bf 90       	pop	r11
+ 38e:	af 90       	pop	r10
+ 390:	9f 90       	pop	r9
+ 392:	8f 90       	pop	r8
+ 394:	08 95       	ret
+
+00000396 <Notify>:
+#include "BCM.h"
+#include "UART.h"
+
+void Notify(void)
+{
+	DIO_toggle(0);
+ 396:	80 e0       	ldi	r24, 0x00	; 0
+ 398:	0e 94 90 03 	call	0x720	; 0x720 <DIO_toggle>
+ 39c:	08 95       	ret
+
+0000039e <main>:
+}
+
+int main(void)
+{
+ 39e:	cf 93       	push	r28
+ 3a0:	df 93       	push	r29
+ 3a2:	cd b7       	in	r28, 0x3d	; 61
+ 3a4:	de b7       	in	r29, 0x3e	; 62
+ 3a6:	67 97       	sbiw	r28, 0x17	; 23
+ 3a8:	0f b6       	in	r0, 0x3f	; 63
+ 3aa:	f8 94       	cli
+ 3ac:	de bf       	out	0x3e, r29	; 62
+ 3ae:	0f be       	out	0x3f, r0	; 63
+ 3b0:	cd bf       	out	0x3d, r28	; 61
+	DIO_Init();
+ 3b2:	0e 94 08 02 	call	0x410	; 0x410 <DIO_Init>
+	/* TX */
+	#if 1
+	uint8_t au8Buffer[4] = "Ehab";
+ 3b6:	85 e4       	ldi	r24, 0x45	; 69
+ 3b8:	98 e6       	ldi	r25, 0x68	; 104
+ 3ba:	9a 83       	std	Y+2, r25	; 0x02
+ 3bc:	89 83       	std	Y+1, r24	; 0x01
+ 3be:	81 e6       	ldi	r24, 0x61	; 97
+ 3c0:	92 e6       	ldi	r25, 0x62	; 98
+ 3c2:	9c 83       	std	Y+4, r25	; 0x04
+ 3c4:	8b 83       	std	Y+3, r24	; 0x03
+	strBCMCfg_t strBCMCfg = {BCM_UART_CHANNEL, BCM_TX};
+ 3c6:	1d 82       	std	Y+5, r1	; 0x05
+ 3c8:	1e 82       	std	Y+6, r1	; 0x06
+	strBCMTaskCfg_t strBCMTaskCfg = {BCM_ID, 4, au8Buffer, 0x0A, Notify, BCM_UART_CHANNEL, BCM_TX};
+ 3ca:	1f 82       	std	Y+7, r1	; 0x07
+ 3cc:	84 e0       	ldi	r24, 0x04	; 4
+ 3ce:	90 e0       	ldi	r25, 0x00	; 0
+ 3d0:	99 87       	std	Y+9, r25	; 0x09
+ 3d2:	88 87       	std	Y+8, r24	; 0x08
+ 3d4:	ce 01       	movw	r24, r28
+ 3d6:	01 96       	adiw	r24, 0x01	; 1
+ 3d8:	9b 87       	std	Y+11, r25	; 0x0b
+ 3da:	8a 87       	std	Y+10, r24	; 0x0a
+ 3dc:	8a e0       	ldi	r24, 0x0A	; 10
+ 3de:	8c 87       	std	Y+12, r24	; 0x0c
+ 3e0:	1d 86       	std	Y+13, r1	; 0x0d
+ 3e2:	1e 86       	std	Y+14, r1	; 0x0e
+ 3e4:	1f 86       	std	Y+15, r1	; 0x0f
+ 3e6:	18 8a       	std	Y+16, r1	; 0x10
+ 3e8:	19 8a       	std	Y+17, r1	; 0x11
+ 3ea:	1a 8a       	std	Y+18, r1	; 0x12
+ 3ec:	1b 8a       	std	Y+19, r1	; 0x13
+ 3ee:	8b ec       	ldi	r24, 0xCB	; 203
+ 3f0:	91 e0       	ldi	r25, 0x01	; 1
+ 3f2:	9d 8b       	std	Y+21, r25	; 0x15
+ 3f4:	8c 8b       	std	Y+20, r24	; 0x14
+ 3f6:	1e 8a       	std	Y+22, r1	; 0x16
+ 3f8:	1f 8a       	std	Y+23, r1	; 0x17
+	
+	BCM_Init(&strBCMCfg);
+ 3fa:	ce 01       	movw	r24, r28
+ 3fc:	05 96       	adiw	r24, 0x05	; 5
+ 3fe:	0e 94 9c 00 	call	0x138	; 0x138 <BCM_Init>
+	BCM_Setup(&strBCMTaskCfg);
+ 402:	ce 01       	movw	r24, r28
+ 404:	07 96       	adiw	r24, 0x07	; 7
+ 406:	0e 94 ec 00 	call	0x1d8	; 0x1d8 <BCM_Setup>
+	while(1)
+	{
+		BCM_TxDispatcher();
+ 40a:	0e 94 09 01 	call	0x212	; 0x212 <BCM_TxDispatcher>
+ 40e:	fd cf       	rjmp	.-6      	; 0x40a <__EEPROM_REGION_LENGTH__+0xa>
+
+00000410 <DIO_Init>:
+			*pu8_Data = GET_BIT(PIND_R,(astrDIOConfigParameters[u8_GroupId].enuPinNo - 24));
+		}//end else if
+
+		return E_OK;
+	}//end else
+}//end DIO_Read
+ 410:	20 e0       	ldi	r18, 0x00	; 0
+ 412:	81 c1       	rjmp	.+770    	; 0x716 <DIO_Init+0x306>
+ 414:	82 2f       	mov	r24, r18
+ 416:	90 e0       	ldi	r25, 0x00	; 0
+ 418:	fc 01       	movw	r30, r24
+ 41a:	ee 0f       	add	r30, r30
+ 41c:	ff 1f       	adc	r31, r31
+ 41e:	e8 0f       	add	r30, r24
+ 420:	f9 1f       	adc	r31, r25
+ 422:	ef 59       	subi	r30, 0x9F	; 159
+ 424:	ff 4f       	sbci	r31, 0xFF	; 255
+ 426:	31 81       	ldd	r19, Z+1	; 0x01
+ 428:	31 11       	cpse	r19, r1
+ 42a:	58 c0       	rjmp	.+176    	; 0x4dc <DIO_Init+0xcc>
+ 42c:	fc 01       	movw	r30, r24
+ 42e:	ee 0f       	add	r30, r30
+ 430:	ff 1f       	adc	r31, r31
+ 432:	e8 0f       	add	r30, r24
+ 434:	f9 1f       	adc	r31, r25
+ 436:	ef 59       	subi	r30, 0x9F	; 159
+ 438:	ff 4f       	sbci	r31, 0xFF	; 255
+ 43a:	40 81       	ld	r20, Z
+ 43c:	48 30       	cpi	r20, 0x08	; 8
+ 43e:	70 f4       	brcc	.+28     	; 0x45c <DIO_Init+0x4c>
+ 440:	3a b3       	in	r19, 0x1a	; 26
+ 442:	61 e0       	ldi	r22, 0x01	; 1
+ 444:	70 e0       	ldi	r23, 0x00	; 0
+ 446:	fb 01       	movw	r30, r22
+ 448:	02 c0       	rjmp	.+4      	; 0x44e <DIO_Init+0x3e>
+ 44a:	ee 0f       	add	r30, r30
+ 44c:	ff 1f       	adc	r31, r31
+ 44e:	4a 95       	dec	r20
+ 450:	e2 f7       	brpl	.-8      	; 0x44a <DIO_Init+0x3a>
+ 452:	af 01       	movw	r20, r30
+ 454:	40 95       	com	r20
+ 456:	43 23       	and	r20, r19
+ 458:	4a bb       	out	0x1a, r20	; 26
+ 45a:	95 c0       	rjmp	.+298    	; 0x586 <DIO_Init+0x176>
+ 45c:	38 ef       	ldi	r19, 0xF8	; 248
+ 45e:	34 0f       	add	r19, r20
+ 460:	38 30       	cpi	r19, 0x08	; 8
+ 462:	88 f4       	brcc	.+34     	; 0x486 <DIO_Init+0x76>
+ 464:	37 b3       	in	r19, 0x17	; 23
+ 466:	50 e0       	ldi	r21, 0x00	; 0
+ 468:	48 50       	subi	r20, 0x08	; 8
+ 46a:	51 09       	sbc	r21, r1
+ 46c:	61 e0       	ldi	r22, 0x01	; 1
+ 46e:	70 e0       	ldi	r23, 0x00	; 0
+ 470:	fb 01       	movw	r30, r22
+ 472:	02 c0       	rjmp	.+4      	; 0x478 <DIO_Init+0x68>
+ 474:	ee 0f       	add	r30, r30
+ 476:	ff 1f       	adc	r31, r31
+ 478:	4a 95       	dec	r20
+ 47a:	e2 f7       	brpl	.-8      	; 0x474 <DIO_Init+0x64>
+ 47c:	af 01       	movw	r20, r30
+ 47e:	40 95       	com	r20
+ 480:	43 23       	and	r20, r19
+ 482:	47 bb       	out	0x17, r20	; 23
+ 484:	80 c0       	rjmp	.+256    	; 0x586 <DIO_Init+0x176>
+ 486:	30 ef       	ldi	r19, 0xF0	; 240
+ 488:	34 0f       	add	r19, r20
+ 48a:	38 30       	cpi	r19, 0x08	; 8
+ 48c:	88 f4       	brcc	.+34     	; 0x4b0 <DIO_Init+0xa0>
+ 48e:	34 b3       	in	r19, 0x14	; 20
+ 490:	50 e0       	ldi	r21, 0x00	; 0
+ 492:	40 51       	subi	r20, 0x10	; 16
+ 494:	51 09       	sbc	r21, r1
+ 496:	61 e0       	ldi	r22, 0x01	; 1
+ 498:	70 e0       	ldi	r23, 0x00	; 0
+ 49a:	fb 01       	movw	r30, r22
+ 49c:	02 c0       	rjmp	.+4      	; 0x4a2 <DIO_Init+0x92>
+ 49e:	ee 0f       	add	r30, r30
+ 4a0:	ff 1f       	adc	r31, r31
+ 4a2:	4a 95       	dec	r20
+ 4a4:	e2 f7       	brpl	.-8      	; 0x49e <DIO_Init+0x8e>
+ 4a6:	af 01       	movw	r20, r30
+ 4a8:	40 95       	com	r20
+ 4aa:	43 23       	and	r20, r19
+ 4ac:	44 bb       	out	0x14, r20	; 20
+ 4ae:	6b c0       	rjmp	.+214    	; 0x586 <DIO_Init+0x176>
+ 4b0:	38 ee       	ldi	r19, 0xE8	; 232
+ 4b2:	34 0f       	add	r19, r20
+ 4b4:	38 30       	cpi	r19, 0x08	; 8
+ 4b6:	08 f0       	brcs	.+2      	; 0x4ba <DIO_Init+0xaa>
+ 4b8:	66 c0       	rjmp	.+204    	; 0x586 <DIO_Init+0x176>
+ 4ba:	31 b3       	in	r19, 0x11	; 17
+ 4bc:	50 e0       	ldi	r21, 0x00	; 0
+ 4be:	48 51       	subi	r20, 0x18	; 24
+ 4c0:	51 09       	sbc	r21, r1
+ 4c2:	61 e0       	ldi	r22, 0x01	; 1
+ 4c4:	70 e0       	ldi	r23, 0x00	; 0
+ 4c6:	fb 01       	movw	r30, r22
+ 4c8:	02 c0       	rjmp	.+4      	; 0x4ce <DIO_Init+0xbe>
+ 4ca:	ee 0f       	add	r30, r30
+ 4cc:	ff 1f       	adc	r31, r31
+ 4ce:	4a 95       	dec	r20
+ 4d0:	e2 f7       	brpl	.-8      	; 0x4ca <DIO_Init+0xba>
+ 4d2:	af 01       	movw	r20, r30
+ 4d4:	40 95       	com	r20
+ 4d6:	43 23       	and	r20, r19
+ 4d8:	41 bb       	out	0x11, r20	; 17
+ 4da:	55 c0       	rjmp	.+170    	; 0x586 <DIO_Init+0x176>
+ 4dc:	31 30       	cpi	r19, 0x01	; 1
+ 4de:	09 f0       	breq	.+2      	; 0x4e2 <DIO_Init+0xd2>
+ 4e0:	52 c0       	rjmp	.+164    	; 0x586 <DIO_Init+0x176>
+ 4e2:	fc 01       	movw	r30, r24
+ 4e4:	ee 0f       	add	r30, r30
+ 4e6:	ff 1f       	adc	r31, r31
+ 4e8:	e8 0f       	add	r30, r24
+ 4ea:	f9 1f       	adc	r31, r25
+ 4ec:	ef 59       	subi	r30, 0x9F	; 159
+ 4ee:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4f0:	40 81       	ld	r20, Z
+ 4f2:	48 30       	cpi	r20, 0x08	; 8
+ 4f4:	68 f4       	brcc	.+26     	; 0x510 <DIO_Init+0x100>
+ 4f6:	3a b3       	in	r19, 0x1a	; 26
+ 4f8:	61 e0       	ldi	r22, 0x01	; 1
+ 4fa:	70 e0       	ldi	r23, 0x00	; 0
+ 4fc:	fb 01       	movw	r30, r22
+ 4fe:	02 c0       	rjmp	.+4      	; 0x504 <DIO_Init+0xf4>
+ 500:	ee 0f       	add	r30, r30
+ 502:	ff 1f       	adc	r31, r31
+ 504:	4a 95       	dec	r20
+ 506:	e2 f7       	brpl	.-8      	; 0x500 <DIO_Init+0xf0>
+ 508:	af 01       	movw	r20, r30
+ 50a:	43 2b       	or	r20, r19
+ 50c:	4a bb       	out	0x1a, r20	; 26
+ 50e:	3b c0       	rjmp	.+118    	; 0x586 <DIO_Init+0x176>
+ 510:	38 ef       	ldi	r19, 0xF8	; 248
+ 512:	34 0f       	add	r19, r20
+ 514:	38 30       	cpi	r19, 0x08	; 8
+ 516:	80 f4       	brcc	.+32     	; 0x538 <DIO_Init+0x128>
+ 518:	37 b3       	in	r19, 0x17	; 23
+ 51a:	50 e0       	ldi	r21, 0x00	; 0
+ 51c:	48 50       	subi	r20, 0x08	; 8
+ 51e:	51 09       	sbc	r21, r1
+ 520:	61 e0       	ldi	r22, 0x01	; 1
+ 522:	70 e0       	ldi	r23, 0x00	; 0
+ 524:	fb 01       	movw	r30, r22
+ 526:	02 c0       	rjmp	.+4      	; 0x52c <DIO_Init+0x11c>
+ 528:	ee 0f       	add	r30, r30
+ 52a:	ff 1f       	adc	r31, r31
+ 52c:	4a 95       	dec	r20
+ 52e:	e2 f7       	brpl	.-8      	; 0x528 <DIO_Init+0x118>
+ 530:	af 01       	movw	r20, r30
+ 532:	43 2b       	or	r20, r19
+ 534:	47 bb       	out	0x17, r20	; 23
+ 536:	27 c0       	rjmp	.+78     	; 0x586 <DIO_Init+0x176>
+ 538:	30 ef       	ldi	r19, 0xF0	; 240
+ 53a:	34 0f       	add	r19, r20
+ 53c:	38 30       	cpi	r19, 0x08	; 8
+ 53e:	80 f4       	brcc	.+32     	; 0x560 <DIO_Init+0x150>
+ 540:	34 b3       	in	r19, 0x14	; 20
+ 542:	50 e0       	ldi	r21, 0x00	; 0
+ 544:	40 51       	subi	r20, 0x10	; 16
+ 546:	51 09       	sbc	r21, r1
+ 548:	61 e0       	ldi	r22, 0x01	; 1
+ 54a:	70 e0       	ldi	r23, 0x00	; 0
+ 54c:	fb 01       	movw	r30, r22
+ 54e:	02 c0       	rjmp	.+4      	; 0x554 <DIO_Init+0x144>
+ 550:	ee 0f       	add	r30, r30
+ 552:	ff 1f       	adc	r31, r31
+ 554:	4a 95       	dec	r20
+ 556:	e2 f7       	brpl	.-8      	; 0x550 <DIO_Init+0x140>
+ 558:	af 01       	movw	r20, r30
+ 55a:	43 2b       	or	r20, r19
+ 55c:	44 bb       	out	0x14, r20	; 20
+ 55e:	13 c0       	rjmp	.+38     	; 0x586 <DIO_Init+0x176>
+ 560:	38 ee       	ldi	r19, 0xE8	; 232
+ 562:	34 0f       	add	r19, r20
+ 564:	38 30       	cpi	r19, 0x08	; 8
+ 566:	78 f4       	brcc	.+30     	; 0x586 <DIO_Init+0x176>
+ 568:	31 b3       	in	r19, 0x11	; 17
+ 56a:	50 e0       	ldi	r21, 0x00	; 0
+ 56c:	48 51       	subi	r20, 0x18	; 24
+ 56e:	51 09       	sbc	r21, r1
+ 570:	61 e0       	ldi	r22, 0x01	; 1
+ 572:	70 e0       	ldi	r23, 0x00	; 0
+ 574:	fb 01       	movw	r30, r22
+ 576:	02 c0       	rjmp	.+4      	; 0x57c <DIO_Init+0x16c>
+ 578:	ee 0f       	add	r30, r30
+ 57a:	ff 1f       	adc	r31, r31
+ 57c:	4a 95       	dec	r20
+ 57e:	e2 f7       	brpl	.-8      	; 0x578 <DIO_Init+0x168>
+ 580:	af 01       	movw	r20, r30
+ 582:	43 2b       	or	r20, r19
+ 584:	41 bb       	out	0x11, r20	; 17
+ 586:	fc 01       	movw	r30, r24
+ 588:	ee 0f       	add	r30, r30
+ 58a:	ff 1f       	adc	r31, r31
+ 58c:	e8 0f       	add	r30, r24
+ 58e:	f9 1f       	adc	r31, r25
+ 590:	ef 59       	subi	r30, 0x9F	; 159
+ 592:	ff 4f       	sbci	r31, 0xFF	; 255
+ 594:	31 81       	ldd	r19, Z+1	; 0x01
+ 596:	31 11       	cpse	r19, r1
+ 598:	60 c0       	rjmp	.+192    	; 0x65a <DIO_Init+0x24a>
+ 59a:	fc 01       	movw	r30, r24
+ 59c:	ee 0f       	add	r30, r30
+ 59e:	ff 1f       	adc	r31, r31
+ 5a0:	e8 0f       	add	r30, r24
+ 5a2:	f9 1f       	adc	r31, r25
+ 5a4:	ef 59       	subi	r30, 0x9F	; 159
+ 5a6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 5a8:	42 81       	ldd	r20, Z+2	; 0x02
+ 5aa:	41 11       	cpse	r20, r1
+ 5ac:	56 c0       	rjmp	.+172    	; 0x65a <DIO_Init+0x24a>
+ 5ae:	fc 01       	movw	r30, r24
+ 5b0:	ee 0f       	add	r30, r30
+ 5b2:	ff 1f       	adc	r31, r31
+ 5b4:	8e 0f       	add	r24, r30
+ 5b6:	9f 1f       	adc	r25, r31
+ 5b8:	fc 01       	movw	r30, r24
+ 5ba:	ef 59       	subi	r30, 0x9F	; 159
+ 5bc:	ff 4f       	sbci	r31, 0xFF	; 255
+ 5be:	80 81       	ld	r24, Z
+ 5c0:	88 30       	cpi	r24, 0x08	; 8
+ 5c2:	70 f4       	brcc	.+28     	; 0x5e0 <DIO_Init+0x1d0>
+ 5c4:	3b b3       	in	r19, 0x1b	; 27
+ 5c6:	41 e0       	ldi	r20, 0x01	; 1
+ 5c8:	50 e0       	ldi	r21, 0x00	; 0
+ 5ca:	ba 01       	movw	r22, r20
+ 5cc:	02 c0       	rjmp	.+4      	; 0x5d2 <DIO_Init+0x1c2>
+ 5ce:	66 0f       	add	r22, r22
+ 5d0:	77 1f       	adc	r23, r23
+ 5d2:	8a 95       	dec	r24
+ 5d4:	e2 f7       	brpl	.-8      	; 0x5ce <DIO_Init+0x1be>
+ 5d6:	cb 01       	movw	r24, r22
+ 5d8:	80 95       	com	r24
+ 5da:	83 23       	and	r24, r19
+ 5dc:	8b bb       	out	0x1b, r24	; 27
+ 5de:	9a c0       	rjmp	.+308    	; 0x714 <DIO_Init+0x304>
+ 5e0:	98 ef       	ldi	r25, 0xF8	; 248
+ 5e2:	98 0f       	add	r25, r24
+ 5e4:	98 30       	cpi	r25, 0x08	; 8
+ 5e6:	80 f4       	brcc	.+32     	; 0x608 <DIO_Init+0x1f8>
+ 5e8:	38 b3       	in	r19, 0x18	; 24
+ 5ea:	90 e0       	ldi	r25, 0x00	; 0
+ 5ec:	08 97       	sbiw	r24, 0x08	; 8
+ 5ee:	41 e0       	ldi	r20, 0x01	; 1
+ 5f0:	50 e0       	ldi	r21, 0x00	; 0
+ 5f2:	fa 01       	movw	r30, r20
+ 5f4:	02 c0       	rjmp	.+4      	; 0x5fa <DIO_Init+0x1ea>
+ 5f6:	ee 0f       	add	r30, r30
+ 5f8:	ff 1f       	adc	r31, r31
+ 5fa:	8a 95       	dec	r24
+ 5fc:	e2 f7       	brpl	.-8      	; 0x5f6 <DIO_Init+0x1e6>
+ 5fe:	cf 01       	movw	r24, r30
+ 600:	80 95       	com	r24
+ 602:	83 23       	and	r24, r19
+ 604:	88 bb       	out	0x18, r24	; 24
+ 606:	86 c0       	rjmp	.+268    	; 0x714 <DIO_Init+0x304>
+ 608:	90 ef       	ldi	r25, 0xF0	; 240
+ 60a:	98 0f       	add	r25, r24
+ 60c:	98 30       	cpi	r25, 0x08	; 8
+ 60e:	80 f4       	brcc	.+32     	; 0x630 <DIO_Init+0x220>
+ 610:	35 b3       	in	r19, 0x15	; 21
+ 612:	90 e0       	ldi	r25, 0x00	; 0
+ 614:	40 97       	sbiw	r24, 0x10	; 16
+ 616:	41 e0       	ldi	r20, 0x01	; 1
+ 618:	50 e0       	ldi	r21, 0x00	; 0
+ 61a:	ba 01       	movw	r22, r20
+ 61c:	02 c0       	rjmp	.+4      	; 0x622 <DIO_Init+0x212>
+ 61e:	66 0f       	add	r22, r22
+ 620:	77 1f       	adc	r23, r23
+ 622:	8a 95       	dec	r24
+ 624:	e2 f7       	brpl	.-8      	; 0x61e <DIO_Init+0x20e>
+ 626:	cb 01       	movw	r24, r22
+ 628:	80 95       	com	r24
+ 62a:	83 23       	and	r24, r19
+ 62c:	85 bb       	out	0x15, r24	; 21
+ 62e:	72 c0       	rjmp	.+228    	; 0x714 <DIO_Init+0x304>
+ 630:	98 ee       	ldi	r25, 0xE8	; 232
+ 632:	98 0f       	add	r25, r24
+ 634:	98 30       	cpi	r25, 0x08	; 8
+ 636:	08 f0       	brcs	.+2      	; 0x63a <DIO_Init+0x22a>
+ 638:	6d c0       	rjmp	.+218    	; 0x714 <DIO_Init+0x304>
+ 63a:	32 b3       	in	r19, 0x12	; 18
+ 63c:	90 e0       	ldi	r25, 0x00	; 0
+ 63e:	48 97       	sbiw	r24, 0x18	; 24
+ 640:	41 e0       	ldi	r20, 0x01	; 1
+ 642:	50 e0       	ldi	r21, 0x00	; 0
+ 644:	fa 01       	movw	r30, r20
+ 646:	02 c0       	rjmp	.+4      	; 0x64c <DIO_Init+0x23c>
+ 648:	ee 0f       	add	r30, r30
+ 64a:	ff 1f       	adc	r31, r31
+ 64c:	8a 95       	dec	r24
+ 64e:	e2 f7       	brpl	.-8      	; 0x648 <DIO_Init+0x238>
+ 650:	cf 01       	movw	r24, r30
+ 652:	80 95       	com	r24
+ 654:	83 23       	and	r24, r19
+ 656:	82 bb       	out	0x12, r24	; 18
+ 658:	5d c0       	rjmp	.+186    	; 0x714 <DIO_Init+0x304>
+ 65a:	31 11       	cpse	r19, r1
+ 65c:	5b c0       	rjmp	.+182    	; 0x714 <DIO_Init+0x304>
+ 65e:	fc 01       	movw	r30, r24
+ 660:	ee 0f       	add	r30, r30
+ 662:	ff 1f       	adc	r31, r31
+ 664:	e8 0f       	add	r30, r24
+ 666:	f9 1f       	adc	r31, r25
+ 668:	ef 59       	subi	r30, 0x9F	; 159
+ 66a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 66c:	32 81       	ldd	r19, Z+2	; 0x02
+ 66e:	31 30       	cpi	r19, 0x01	; 1
+ 670:	09 f0       	breq	.+2      	; 0x674 <DIO_Init+0x264>
+ 672:	50 c0       	rjmp	.+160    	; 0x714 <DIO_Init+0x304>
+ 674:	fc 01       	movw	r30, r24
+ 676:	ee 0f       	add	r30, r30
+ 678:	ff 1f       	adc	r31, r31
+ 67a:	8e 0f       	add	r24, r30
+ 67c:	9f 1f       	adc	r25, r31
+ 67e:	fc 01       	movw	r30, r24
+ 680:	ef 59       	subi	r30, 0x9F	; 159
+ 682:	ff 4f       	sbci	r31, 0xFF	; 255
+ 684:	80 81       	ld	r24, Z
+ 686:	88 30       	cpi	r24, 0x08	; 8
+ 688:	68 f4       	brcc	.+26     	; 0x6a4 <DIO_Init+0x294>
+ 68a:	3b b3       	in	r19, 0x1b	; 27
+ 68c:	41 e0       	ldi	r20, 0x01	; 1
+ 68e:	50 e0       	ldi	r21, 0x00	; 0
+ 690:	ba 01       	movw	r22, r20
+ 692:	02 c0       	rjmp	.+4      	; 0x698 <DIO_Init+0x288>
+ 694:	66 0f       	add	r22, r22
+ 696:	77 1f       	adc	r23, r23
+ 698:	8a 95       	dec	r24
+ 69a:	e2 f7       	brpl	.-8      	; 0x694 <DIO_Init+0x284>
+ 69c:	cb 01       	movw	r24, r22
+ 69e:	83 2b       	or	r24, r19
+ 6a0:	8b bb       	out	0x1b, r24	; 27
+ 6a2:	38 c0       	rjmp	.+112    	; 0x714 <DIO_Init+0x304>
+ 6a4:	98 ef       	ldi	r25, 0xF8	; 248
+ 6a6:	98 0f       	add	r25, r24
+ 6a8:	98 30       	cpi	r25, 0x08	; 8
+ 6aa:	78 f4       	brcc	.+30     	; 0x6ca <DIO_Init+0x2ba>
+ 6ac:	38 b3       	in	r19, 0x18	; 24
+ 6ae:	90 e0       	ldi	r25, 0x00	; 0
+ 6b0:	08 97       	sbiw	r24, 0x08	; 8
+ 6b2:	41 e0       	ldi	r20, 0x01	; 1
+ 6b4:	50 e0       	ldi	r21, 0x00	; 0
+ 6b6:	fa 01       	movw	r30, r20
+ 6b8:	02 c0       	rjmp	.+4      	; 0x6be <DIO_Init+0x2ae>
+ 6ba:	ee 0f       	add	r30, r30
+ 6bc:	ff 1f       	adc	r31, r31
+ 6be:	8a 95       	dec	r24
+ 6c0:	e2 f7       	brpl	.-8      	; 0x6ba <DIO_Init+0x2aa>
+ 6c2:	cf 01       	movw	r24, r30
+ 6c4:	83 2b       	or	r24, r19
+ 6c6:	88 bb       	out	0x18, r24	; 24
+ 6c8:	25 c0       	rjmp	.+74     	; 0x714 <DIO_Init+0x304>
+ 6ca:	90 ef       	ldi	r25, 0xF0	; 240
+ 6cc:	98 0f       	add	r25, r24
+ 6ce:	98 30       	cpi	r25, 0x08	; 8
+ 6d0:	78 f4       	brcc	.+30     	; 0x6f0 <DIO_Init+0x2e0>
+ 6d2:	35 b3       	in	r19, 0x15	; 21
+ 6d4:	90 e0       	ldi	r25, 0x00	; 0
+ 6d6:	40 97       	sbiw	r24, 0x10	; 16
+ 6d8:	41 e0       	ldi	r20, 0x01	; 1
+ 6da:	50 e0       	ldi	r21, 0x00	; 0
+ 6dc:	ba 01       	movw	r22, r20
+ 6de:	02 c0       	rjmp	.+4      	; 0x6e4 <DIO_Init+0x2d4>
+ 6e0:	66 0f       	add	r22, r22
+ 6e2:	77 1f       	adc	r23, r23
+ 6e4:	8a 95       	dec	r24
+ 6e6:	e2 f7       	brpl	.-8      	; 0x6e0 <DIO_Init+0x2d0>
+ 6e8:	cb 01       	movw	r24, r22
+ 6ea:	83 2b       	or	r24, r19
+ 6ec:	85 bb       	out	0x15, r24	; 21
+ 6ee:	12 c0       	rjmp	.+36     	; 0x714 <DIO_Init+0x304>
+ 6f0:	98 ee       	ldi	r25, 0xE8	; 232
+ 6f2:	98 0f       	add	r25, r24
+ 6f4:	98 30       	cpi	r25, 0x08	; 8
+ 6f6:	70 f4       	brcc	.+28     	; 0x714 <DIO_Init+0x304>
+ 6f8:	32 b3       	in	r19, 0x12	; 18
+ 6fa:	90 e0       	ldi	r25, 0x00	; 0
+ 6fc:	48 97       	sbiw	r24, 0x18	; 24
+ 6fe:	41 e0       	ldi	r20, 0x01	; 1
+ 700:	50 e0       	ldi	r21, 0x00	; 0
+ 702:	fa 01       	movw	r30, r20
+ 704:	02 c0       	rjmp	.+4      	; 0x70a <DIO_Init+0x2fa>
+ 706:	ee 0f       	add	r30, r30
+ 708:	ff 1f       	adc	r31, r31
+ 70a:	8a 95       	dec	r24
+ 70c:	e2 f7       	brpl	.-8      	; 0x706 <DIO_Init+0x2f6>
+ 70e:	cf 01       	movw	r24, r30
+ 710:	83 2b       	or	r24, r19
+ 712:	82 bb       	out	0x12, r24	; 18
+ 714:	2f 5f       	subi	r18, 0xFF	; 255
+ 716:	22 23       	and	r18, r18
+ 718:	09 f4       	brne	.+2      	; 0x71c <DIO_Init+0x30c>
+ 71a:	7c ce       	rjmp	.-776    	; 0x414 <DIO_Init+0x4>
+ 71c:	81 e0       	ldi	r24, 0x01	; 1
+ 71e:	08 95       	ret
+
+00000720 <DIO_toggle>:
+* Return Value    : enuErrorStatus_t - For error handling if the user input an invalid parameter
+* Description     : A function to toggle the selected DIO pin
+*************************************************************************************************/
+enuErrorStatus_t DIO_toggle(uint8_t u8_GroupId)
+{
+	if((astrDIOConfigParameters[u8_GroupId].enuPinNo >= 0) && (astrDIOConfigParameters[u8_GroupId].enuPinNo < 8))	//if porta
+ 720:	90 e0       	ldi	r25, 0x00	; 0
+ 722:	fc 01       	movw	r30, r24
+ 724:	ee 0f       	add	r30, r30
+ 726:	ff 1f       	adc	r31, r31
+ 728:	8e 0f       	add	r24, r30
+ 72a:	9f 1f       	adc	r25, r31
+ 72c:	fc 01       	movw	r30, r24
+ 72e:	ef 59       	subi	r30, 0x9F	; 159
+ 730:	ff 4f       	sbci	r31, 0xFF	; 255
+ 732:	80 81       	ld	r24, Z
+ 734:	88 30       	cpi	r24, 0x08	; 8
+ 736:	68 f4       	brcc	.+26     	; 0x752 <DIO_toggle+0x32>
+	{
+		TOGGLE_BIT(PORTA_R, astrDIOConfigParameters[u8_GroupId].enuPinNo);
+ 738:	4b b3       	in	r20, 0x1b	; 27
+ 73a:	21 e0       	ldi	r18, 0x01	; 1
+ 73c:	30 e0       	ldi	r19, 0x00	; 0
+ 73e:	b9 01       	movw	r22, r18
+ 740:	02 c0       	rjmp	.+4      	; 0x746 <DIO_toggle+0x26>
+ 742:	66 0f       	add	r22, r22
+ 744:	77 1f       	adc	r23, r23
+ 746:	8a 95       	dec	r24
+ 748:	e2 f7       	brpl	.-8      	; 0x742 <DIO_toggle+0x22>
+ 74a:	cb 01       	movw	r24, r22
+ 74c:	84 27       	eor	r24, r20
+ 74e:	8b bb       	out	0x1b, r24	; 27
+ 750:	38 c0       	rjmp	.+112    	; 0x7c2 <DIO_toggle+0xa2>
+	}//end if
+	else if((astrDIOConfigParameters[u8_GroupId].enuPinNo >= 8) && (astrDIOConfigParameters[u8_GroupId].enuPinNo < 16))	//if portb
+ 752:	98 ef       	ldi	r25, 0xF8	; 248
+ 754:	98 0f       	add	r25, r24
+ 756:	98 30       	cpi	r25, 0x08	; 8
+ 758:	78 f4       	brcc	.+30     	; 0x778 <DIO_toggle+0x58>
+	{
+		TOGGLE_BIT(PORTB_R,(astrDIOConfigParameters[u8_GroupId].enuPinNo - 8));
+ 75a:	48 b3       	in	r20, 0x18	; 24
+ 75c:	90 e0       	ldi	r25, 0x00	; 0
+ 75e:	08 97       	sbiw	r24, 0x08	; 8
+ 760:	21 e0       	ldi	r18, 0x01	; 1
+ 762:	30 e0       	ldi	r19, 0x00	; 0
+ 764:	b9 01       	movw	r22, r18
+ 766:	02 c0       	rjmp	.+4      	; 0x76c <DIO_toggle+0x4c>
+ 768:	66 0f       	add	r22, r22
+ 76a:	77 1f       	adc	r23, r23
+ 76c:	8a 95       	dec	r24
+ 76e:	e2 f7       	brpl	.-8      	; 0x768 <DIO_toggle+0x48>
+ 770:	cb 01       	movw	r24, r22
+ 772:	84 27       	eor	r24, r20
+ 774:	88 bb       	out	0x18, r24	; 24
+ 776:	25 c0       	rjmp	.+74     	; 0x7c2 <DIO_toggle+0xa2>
+	}//end else if
+	else if((astrDIOConfigParameters[u8_GroupId].enuPinNo >= 16) && (astrDIOConfigParameters[u8_GroupId].enuPinNo < 24))	//if portc
+ 778:	90 ef       	ldi	r25, 0xF0	; 240
+ 77a:	98 0f       	add	r25, r24
+ 77c:	98 30       	cpi	r25, 0x08	; 8
+ 77e:	78 f4       	brcc	.+30     	; 0x79e <DIO_toggle+0x7e>
+	{
+		TOGGLE_BIT(PORTC_R,(astrDIOConfigParameters[u8_GroupId].enuPinNo - 16));
+ 780:	45 b3       	in	r20, 0x15	; 21
+ 782:	90 e0       	ldi	r25, 0x00	; 0
+ 784:	40 97       	sbiw	r24, 0x10	; 16
+ 786:	21 e0       	ldi	r18, 0x01	; 1
+ 788:	30 e0       	ldi	r19, 0x00	; 0
+ 78a:	b9 01       	movw	r22, r18
+ 78c:	02 c0       	rjmp	.+4      	; 0x792 <DIO_toggle+0x72>
+ 78e:	66 0f       	add	r22, r22
+ 790:	77 1f       	adc	r23, r23
+ 792:	8a 95       	dec	r24
+ 794:	e2 f7       	brpl	.-8      	; 0x78e <DIO_toggle+0x6e>
+ 796:	cb 01       	movw	r24, r22
+ 798:	84 27       	eor	r24, r20
+ 79a:	85 bb       	out	0x15, r24	; 21
+ 79c:	12 c0       	rjmp	.+36     	; 0x7c2 <DIO_toggle+0xa2>
+	}//end else if
+	else if((astrDIOConfigParameters[u8_GroupId].enuPinNo >= 24) && (astrDIOConfigParameters[u8_GroupId].enuPinNo < 32))	//if portd
+ 79e:	98 ee       	ldi	r25, 0xE8	; 232
+ 7a0:	98 0f       	add	r25, r24
+ 7a2:	98 30       	cpi	r25, 0x08	; 8
+ 7a4:	70 f4       	brcc	.+28     	; 0x7c2 <DIO_toggle+0xa2>
+	{
+		TOGGLE_BIT(PORTD_R,(astrDIOConfigParameters[u8_GroupId].enuPinNo - 24));
+ 7a6:	42 b3       	in	r20, 0x12	; 18
+ 7a8:	90 e0       	ldi	r25, 0x00	; 0
+ 7aa:	48 97       	sbiw	r24, 0x18	; 24
+ 7ac:	21 e0       	ldi	r18, 0x01	; 1
+ 7ae:	30 e0       	ldi	r19, 0x00	; 0
+ 7b0:	b9 01       	movw	r22, r18
+ 7b2:	02 c0       	rjmp	.+4      	; 0x7b8 <DIO_toggle+0x98>
+ 7b4:	66 0f       	add	r22, r22
+ 7b6:	77 1f       	adc	r23, r23
+ 7b8:	8a 95       	dec	r24
+ 7ba:	e2 f7       	brpl	.-8      	; 0x7b4 <DIO_toggle+0x94>
+ 7bc:	cb 01       	movw	r24, r22
+ 7be:	84 27       	eor	r24, r20
+ 7c0:	82 bb       	out	0x12, r24	; 18
+	}//end else if
+
+	return E_OK;
+}//end DIO_toggle
+ 7c2:	81 e0       	ldi	r24, 0x01	; 1
+ 7c4:	08 95       	ret
+
+000007c6 <TWI_init>:
+#include "I2C.h"
+
+void TWI_init(void)
+{
+    /* Bit Rate: 400.000 kbps using zero pre-scaler TWPS=00 and F_CPU=8Mhz */
+    TWBR_R = 0x02;
+ 7c6:	82 e0       	ldi	r24, 0x02	; 2
+ 7c8:	80 b9       	out	0x00, r24	; 0
+	TWSR_R = 0x00;
+ 7ca:	11 b8       	out	0x01, r1	; 1
+	
+    /* Two Wire Bus address my address if any master device want to call me: 0x1 (used in case this MC is a slave device)
+       General Call Recognition: Off */
+    TWAR_R = 0b00000010; // my address = 0x01 :)
+ 7cc:	82 b9       	out	0x02, r24	; 2
+	
+    TWCR_R = (1<<TWEN_B); /* enable TWI */
+ 7ce:	84 e0       	ldi	r24, 0x04	; 4
+ 7d0:	86 bf       	out	0x36, r24	; 54
+ 7d2:	08 95       	ret
+
+000007d4 <TWI_start>:
+    /* 
+	 * Clear the TWINT flag before sending the start bit TWINT=1
+	 * send the start bit by TWSTA=1
+	 * Enable TWI Module TWEN=1 
+	 */
+    TWCR_R = (1 << TWINT_B) | (1 << TWSTA_B) | (1 << TWEN_B);
+ 7d4:	84 ea       	ldi	r24, 0xA4	; 164
+ 7d6:	86 bf       	out	0x36, r24	; 54
+    
+    /* Wait for TWINT flag set in TWCR Register (start bit is send successfully) */
+    while(!GET_BIT(TWCR_R, TWINT_B));
+ 7d8:	06 b6       	in	r0, 0x36	; 54
+ 7da:	07 fe       	sbrs	r0, 7
+ 7dc:	fd cf       	rjmp	.-6      	; 0x7d8 <TWI_start+0x4>
+}
+ 7de:	08 95       	ret
+
+000007e0 <TWI_stop>:
+    /* 
+	 * Clear the TWINT flag before sending the stop bit TWINT=1
+	 * send the stop bit by TWSTO=1
+	 * Enable TWI Module TWEN=1 
+	 */
+    TWCR_R = (1 << TWINT_B) | (1 << TWSTO_B) | (1 << TWEN_B);
+ 7e0:	84 e9       	ldi	r24, 0x94	; 148
+ 7e2:	86 bf       	out	0x36, r24	; 54
+ 7e4:	08 95       	ret
+
+000007e6 <TWI_write>:
+}
+
+void TWI_write(uint8_t u8Data)
+{
+    /* Put data On TWI data Register */
+    TWDR_R = u8Data;
+ 7e6:	83 b9       	out	0x03, r24	; 3
+    /* 
+	 * Clear the TWINT flag before sending the data TWINT=1
+	 * Enable TWI Module TWEN=1 
+	 */ 
+    TWCR_R = (1 << TWINT_B) | (1 << TWEN_B);
+ 7e8:	84 e8       	ldi	r24, 0x84	; 132
+ 7ea:	86 bf       	out	0x36, r24	; 54
+    /* Wait for TWINT flag set in TWCR Register(data is send successfully) */
+    while(!GET_BIT(TWCR_R, TWINT_B));
+ 7ec:	06 b6       	in	r0, 0x36	; 54
+ 7ee:	07 fe       	sbrs	r0, 7
+ 7f0:	fd cf       	rjmp	.-6      	; 0x7ec <TWI_write+0x6>
+}
+ 7f2:	08 95       	ret
+
+000007f4 <TWI_readWithACK>:
+	/* 
+	 * Clear the TWINT flag before reading the data TWINT=1
+	 * Enable sending ACK after reading or receiving data TWEA=1
+	 * Enable TWI Module TWEN=1 
+	 */ 
+    TWCR_R = (1 << TWINT_B) | (1 << TWEN_B) | (1 << TWEA_B);
+ 7f4:	24 ec       	ldi	r18, 0xC4	; 196
+ 7f6:	26 bf       	out	0x36, r18	; 54
+    /* Wait for TWINT flag set in TWCR Register (data received successfully) */
+    while(!GET_BIT(TWCR_R, TWINT_B));
+ 7f8:	06 b6       	in	r0, 0x36	; 54
+ 7fa:	07 fe       	sbrs	r0, 7
+ 7fc:	fd cf       	rjmp	.-6      	; 0x7f8 <TWI_readWithACK+0x4>
+    /* Read Data */
+    *pu8Data = TWDR_R;
+ 7fe:	23 b1       	in	r18, 0x03	; 3
+ 800:	fc 01       	movw	r30, r24
+ 802:	20 83       	st	Z, r18
+ 804:	08 95       	ret
+
+00000806 <SPI_initMaster>:
+* Description     : A function to initialize SPT
+************************************************************************************************/
+void SPI_init(void)
+{
+#if(SPI_CFG == MASTER)
+	SPI_initMaster();
+ 806:	0e 94 08 02 	call	0x410	; 0x410 <DIO_Init>
+ 80a:	80 e5       	ldi	r24, 0x50	; 80
+ 80c:	8d b9       	out	0x0d, r24	; 13
+ 80e:	08 95       	ret
+
+00000810 <SPI_initSlave>:
+ 810:	0e 94 08 02 	call	0x410	; 0x410 <DIO_Init>
+ 814:	80 e4       	ldi	r24, 0x40	; 64
+ 816:	8d b9       	out	0x0d, r24	; 13
+ 818:	08 95       	ret
+
+0000081a <SPI_sendData>:
+* Description     : A function to send Byte via SPI
+************************************************************************************************/
+void SPI_sendData(const uint8_t u8Data)
+{
+
+	SPDR_R = u8Data;	/*send data*/
+ 81a:	8f b9       	out	0x0f, r24	; 15
+	while(!GET_BIT(SPSR_R, SPIF_B));	/*wait until transfer is complete (SPIF=1)*/
+ 81c:	77 9b       	sbis	0x0e, 7	; 14
+ 81e:	fe cf       	rjmp	.-4      	; 0x81c <SPI_sendData+0x2>
+}
+ 820:	08 95       	ret
+
+00000822 <SPI_receiveData>:
+* Description     : A function to receive Byte via SPI
+************************************************************************************************/
+void SPI_receiveData(uint8_t* pu8Data)
+{
+
+	while(!GET_BIT(SPSR_R,SPIF_B));	/*wait until receive is complete (SPIF=1)*/
+ 822:	77 9b       	sbis	0x0e, 7	; 14
+ 824:	fe cf       	rjmp	.-4      	; 0x822 <SPI_receiveData>
+	*pu8Data = SPDR_R;	/*return the received data*/
+ 826:	2f b1       	in	r18, 0x0f	; 15
+ 828:	fc 01       	movw	r30, r24
+ 82a:	20 83       	st	Z, r18
+ 82c:	08 95       	ret
+
+0000082e <UART_Init>:
+enuErrorStatus_t UART_RX_Disable_Interrupt(void)
+{
+	//clear appropriate bit to disable interrupt
+	CLEAR_BIT(UCSRB_R,RXCIE_B);
+	return E_OK;
+}
+ 82e:	10 bc       	out	0x20, r1	; 32
+ 830:	83 e3       	ldi	r24, 0x33	; 51
+ 832:	89 b9       	out	0x09, r24	; 9
+ 834:	88 e1       	ldi	r24, 0x18	; 24
+ 836:	8a b9       	out	0x0a, r24	; 10
+ 838:	80 b5       	in	r24, 0x20	; 32
+ 83a:	84 60       	ori	r24, 0x04	; 4
+ 83c:	80 bd       	out	0x20, r24	; 32
+ 83e:	80 b5       	in	r24, 0x20	; 32
+ 840:	82 60       	ori	r24, 0x02	; 2
+ 842:	80 bd       	out	0x20, r24	; 32
+ 844:	80 b5       	in	r24, 0x20	; 32
+ 846:	8f 7d       	andi	r24, 0xDF	; 223
+ 848:	80 bd       	out	0x20, r24	; 32
+ 84a:	80 b5       	in	r24, 0x20	; 32
+ 84c:	8f 7e       	andi	r24, 0xEF	; 239
+ 84e:	80 bd       	out	0x20, r24	; 32
+ 850:	80 b5       	in	r24, 0x20	; 32
+ 852:	87 7f       	andi	r24, 0xF7	; 247
+ 854:	80 bd       	out	0x20, r24	; 32
+ 856:	81 e0       	ldi	r24, 0x01	; 1
+ 858:	80 93 71 00 	sts	0x0071, r24	; 0x800071 <gError>
+ 85c:	08 95       	ret
+
+0000085e <UART_RecieveDataNoBLOCK>:
+ 85e:	fc 01       	movw	r30, r24
+ 860:	80 91 71 00 	lds	r24, 0x0071	; 0x800071 <gError>
+ 864:	88 23       	and	r24, r24
+ 866:	59 f0       	breq	.+22     	; 0x87e <__stack+0x1f>
+ 868:	91 e0       	ldi	r25, 0x01	; 1
+ 86a:	90 93 71 00 	sts	0x0071, r25	; 0x800071 <gError>
+ 86e:	5f 9b       	sbis	0x0b, 7	; 11
+ 870:	04 c0       	rjmp	.+8      	; 0x87a <__stack+0x1b>
+ 872:	8c b1       	in	r24, 0x0c	; 12
+ 874:	90 e0       	ldi	r25, 0x00	; 0
+ 876:	91 83       	std	Z+1, r25	; 0x01
+ 878:	80 83       	st	Z, r24
+ 87a:	80 91 71 00 	lds	r24, 0x0071	; 0x800071 <gError>
+ 87e:	08 95       	ret
+
+00000880 <UART_SendDataNoBLOCK>:
+ 880:	98 2f       	mov	r25, r24
+ 882:	80 91 71 00 	lds	r24, 0x0071	; 0x800071 <gError>
+ 886:	88 23       	and	r24, r24
+ 888:	39 f0       	breq	.+14     	; 0x898 <UART_SendDataNoBLOCK+0x18>
+ 88a:	81 e0       	ldi	r24, 0x01	; 1
+ 88c:	80 93 71 00 	sts	0x0071, r24	; 0x800071 <gError>
+ 890:	5d 99       	sbic	0x0b, 5	; 11
+ 892:	9c b9       	out	0x0c, r25	; 12
+ 894:	80 91 71 00 	lds	r24, 0x0071	; 0x800071 <gError>
+ 898:	08 95       	ret
+
+0000089a <UART_TX_Enable_Interrupt>:
+ 89a:	8a b1       	in	r24, 0x0a	; 10
+ 89c:	80 64       	ori	r24, 0x40	; 64
+ 89e:	8a b9       	out	0x0a, r24	; 10
+ 8a0:	81 e0       	ldi	r24, 0x01	; 1
+ 8a2:	08 95       	ret
+
+000008a4 <UART_TX_SetCallBack>:
+ 8a4:	00 97       	sbiw	r24, 0x00	; 0
+ 8a6:	31 f0       	breq	.+12     	; 0x8b4 <UART_TX_SetCallBack+0x10>
+ 8a8:	90 93 6e 00 	sts	0x006E, r25	; 0x80006e <TXC_Callback+0x1>
+ 8ac:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <TXC_Callback>
+ 8b0:	81 e0       	ldi	r24, 0x01	; 1
+ 8b2:	08 95       	ret
+ 8b4:	80 e0       	ldi	r24, 0x00	; 0
+ 8b6:	08 95       	ret
+
+000008b8 <UART_RX_Enable_Interrupt>:
+ 8b8:	8a b1       	in	r24, 0x0a	; 10
+ 8ba:	80 68       	ori	r24, 0x80	; 128
+ 8bc:	8a b9       	out	0x0a, r24	; 10
+ 8be:	81 e0       	ldi	r24, 0x01	; 1
+ 8c0:	08 95       	ret
+
+000008c2 <UART_RX_SetCallBack>:
+* Description: A function to enable setup callback funtion for RX complete interrupt
+************************************************************************************/
+enuErrorStatus_t UART_RX_SetCallBack(void(*local_fptr)(void))
+{
+	//check if the sent pointer points to a valid position
+	if (local_fptr== NULLPTR)     return E_ERROR;
+ 8c2:	00 97       	sbiw	r24, 0x00	; 0
+ 8c4:	31 f0       	breq	.+12     	; 0x8d2 <UART_RX_SetCallBack+0x10>
+	//if so, store the pointer address in the global pointer to function
+	RXC_Callback=local_fptr;
+ 8c6:	90 93 70 00 	sts	0x0070, r25	; 0x800070 <RXC_Callback+0x1>
+ 8ca:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <RXC_Callback>
+	return E_OK;
+ 8ce:	81 e0       	ldi	r24, 0x01	; 1
+ 8d0:	08 95       	ret
+* Description: A function to enable setup callback funtion for RX complete interrupt
+************************************************************************************/
+enuErrorStatus_t UART_RX_SetCallBack(void(*local_fptr)(void))
+{
+	//check if the sent pointer points to a valid position
+	if (local_fptr== NULLPTR)     return E_ERROR;
+ 8d2:	80 e0       	ldi	r24, 0x00	; 0
+	//if so, store the pointer address in the global pointer to function
+	RXC_Callback=local_fptr;
+	return E_OK;
+}
+ 8d4:	08 95       	ret
+
+000008d6 <__vector_13>:
+
+
+/* ISRs----------------------------------------------------------*/
+
+ISR(UART_RX_vect)
+{
+ 8d6:	1f 92       	push	r1
+ 8d8:	0f 92       	push	r0
+ 8da:	0f b6       	in	r0, 0x3f	; 63
+ 8dc:	0f 92       	push	r0
+ 8de:	11 24       	eor	r1, r1
+ 8e0:	2f 93       	push	r18
+ 8e2:	3f 93       	push	r19
+ 8e4:	4f 93       	push	r20
+ 8e6:	5f 93       	push	r21
+ 8e8:	6f 93       	push	r22
+ 8ea:	7f 93       	push	r23
+ 8ec:	8f 93       	push	r24
+ 8ee:	9f 93       	push	r25
+ 8f0:	af 93       	push	r26
+ 8f2:	bf 93       	push	r27
+ 8f4:	ef 93       	push	r30
+ 8f6:	ff 93       	push	r31
+	//if the global pointer to function points to a valid position
+	if (RXC_Callback!=NULLPTR)
+ 8f8:	e0 91 6f 00 	lds	r30, 0x006F	; 0x80006f <RXC_Callback>
+ 8fc:	f0 91 70 00 	lds	r31, 0x0070	; 0x800070 <RXC_Callback+0x1>
+ 900:	30 97       	sbiw	r30, 0x00	; 0
+ 902:	09 f0       	breq	.+2      	; 0x906 <__vector_13+0x30>
+	{
+		//call the function
+		RXC_Callback();
+ 904:	09 95       	icall
+	}
+}
+ 906:	ff 91       	pop	r31
+ 908:	ef 91       	pop	r30
+ 90a:	bf 91       	pop	r27
+ 90c:	af 91       	pop	r26
+ 90e:	9f 91       	pop	r25
+ 910:	8f 91       	pop	r24
+ 912:	7f 91       	pop	r23
+ 914:	6f 91       	pop	r22
+ 916:	5f 91       	pop	r21
+ 918:	4f 91       	pop	r20
+ 91a:	3f 91       	pop	r19
+ 91c:	2f 91       	pop	r18
+ 91e:	0f 90       	pop	r0
+ 920:	0f be       	out	0x3f, r0	; 63
+ 922:	0f 90       	pop	r0
+ 924:	1f 90       	pop	r1
+ 926:	18 95       	reti
+
+00000928 <__vector_15>:
+ISR(UART_TX_vect)
+{
+ 928:	1f 92       	push	r1
+ 92a:	0f 92       	push	r0
+ 92c:	0f b6       	in	r0, 0x3f	; 63
+ 92e:	0f 92       	push	r0
+ 930:	11 24       	eor	r1, r1
+ 932:	2f 93       	push	r18
+ 934:	3f 93       	push	r19
+ 936:	4f 93       	push	r20
+ 938:	5f 93       	push	r21
+ 93a:	6f 93       	push	r22
+ 93c:	7f 93       	push	r23
+ 93e:	8f 93       	push	r24
+ 940:	9f 93       	push	r25
+ 942:	af 93       	push	r26
+ 944:	bf 93       	push	r27
+ 946:	ef 93       	push	r30
+ 948:	ff 93       	push	r31
+	//if the global pointer to function points to a valid position
+	if (TXC_Callback!=NULLPTR)
+ 94a:	e0 91 6d 00 	lds	r30, 0x006D	; 0x80006d <TXC_Callback>
+ 94e:	f0 91 6e 00 	lds	r31, 0x006E	; 0x80006e <TXC_Callback+0x1>
+ 952:	30 97       	sbiw	r30, 0x00	; 0
+ 954:	09 f0       	breq	.+2      	; 0x958 <__vector_15+0x30>
+	{
+		//call the function
+		TXC_Callback();
+ 956:	09 95       	icall
+	}
+}
+ 958:	ff 91       	pop	r31
+ 95a:	ef 91       	pop	r30
+ 95c:	bf 91       	pop	r27
+ 95e:	af 91       	pop	r26
+ 960:	9f 91       	pop	r25
+ 962:	8f 91       	pop	r24
+ 964:	7f 91       	pop	r23
+ 966:	6f 91       	pop	r22
+ 968:	5f 91       	pop	r21
+ 96a:	4f 91       	pop	r20
+ 96c:	3f 91       	pop	r19
+ 96e:	2f 91       	pop	r18
+ 970:	0f 90       	pop	r0
+ 972:	0f be       	out	0x3f, r0	; 63
+ 974:	0f 90       	pop	r0
+ 976:	1f 90       	pop	r1
+ 978:	18 95       	reti
+
+0000097a <__ashrdi3>:
+ 97a:	97 fb       	bst	r25, 7
+ 97c:	10 f8       	bld	r1, 0
+
+0000097e <__lshrdi3>:
+ 97e:	16 94       	lsr	r1
+ 980:	00 08       	sbc	r0, r0
+ 982:	0f 93       	push	r16
+ 984:	08 30       	cpi	r16, 0x08	; 8
+ 986:	98 f0       	brcs	.+38     	; 0x9ae <__lshrdi3+0x30>
+ 988:	08 50       	subi	r16, 0x08	; 8
+ 98a:	23 2f       	mov	r18, r19
+ 98c:	34 2f       	mov	r19, r20
+ 98e:	45 2f       	mov	r20, r21
+ 990:	56 2f       	mov	r21, r22
+ 992:	67 2f       	mov	r22, r23
+ 994:	78 2f       	mov	r23, r24
+ 996:	89 2f       	mov	r24, r25
+ 998:	90 2d       	mov	r25, r0
+ 99a:	f4 cf       	rjmp	.-24     	; 0x984 <__lshrdi3+0x6>
+ 99c:	05 94       	asr	r0
+ 99e:	97 95       	ror	r25
+ 9a0:	87 95       	ror	r24
+ 9a2:	77 95       	ror	r23
+ 9a4:	67 95       	ror	r22
+ 9a6:	57 95       	ror	r21
+ 9a8:	47 95       	ror	r20
+ 9aa:	37 95       	ror	r19
+ 9ac:	27 95       	ror	r18
+ 9ae:	0a 95       	dec	r16
+ 9b0:	aa f7       	brpl	.-22     	; 0x99c <__lshrdi3+0x1e>
+ 9b2:	0f 91       	pop	r16
+ 9b4:	08 95       	ret
+
+000009b6 <_exit>:
+ 9b6:	f8 94       	cli
+
+000009b8 <__stop_program>:
+ 9b8:	ff cf       	rjmp	.-2      	; 0x9b8 <__stop_program>
